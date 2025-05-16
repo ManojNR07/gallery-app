@@ -33,7 +33,7 @@ manoja/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/gallery-app.git
+git clone https://github.com/ManojNR07/gallery-app.git
 cd gallery-app
 ```
 
