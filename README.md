@@ -88,10 +88,7 @@ Or open `index.html` manually in your browser.
 
 Ensure your frontend points to the live backend API.
 
-## 📄 License
-
-MIT
 
 ## 👤 Author
 
-- Manoja
+- Manoj NR
