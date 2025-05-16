@@ -2,7 +2,7 @@
 
 A full-stack image gallery web application built with Node.js (backend) and vanilla HTML/CSS/JS (frontend). This app allows user registration, login, image upload, and admin management with role-based access.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 manoja/
@@ -20,15 +20,15 @@ manoja/
 └── README.md
 ```
 
-## 🚀 Features
+##  Features
 
-- 🔐 JWT-based user authentication
-- 🧑‍💻 Admin/user role-based access control
-- 📷 Image upload & display
-- 🗃 SQLite database
-- 📦 Node.js + Express backend API
+-  JWT-based user authentication
+-  Admin/user role-based access control
+-  Image upload & display
+-  SQLite database
+-  Node.js + Express backend API
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone the Repository
 
@@ -76,12 +76,12 @@ npx serve
 
 Or open `index.html` manually in your browser.
 
-## 🧪 Testing
+##  Testing
 
 - Open your browser at `http://localhost:5000` (or whatever `serve` outputs)
 - Interact with the login, register, and gallery features
 
-## 🌐 Deployment
+##  Deployment
 
 - **Frontend**: Deploy to Netlify, Vercel, or GitHub Pages
 - **Backend**: Deploy on Render, Railway, or Heroku
@@ -89,6 +89,6 @@ Or open `index.html` manually in your browser.
 Ensure your frontend points to the live backend API.
 
 
-## 👤 Author
+##  Author
 
 - Manoj NR
