@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery App - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>Gallery App</h1>
+            <h2>Login</h2>
+            <div id="error-message" class="error-message"></div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="register-link">Register here</a></p>
+        </div>
+
+        <!-- Registration Form (Initially Hidden) -->
+        <div class="login-card" id="register-card" style="display:none;">
+            <h1>Gallery App</h1>
+            <h2>Register</h2>
+            <div id="register-error-message" class="error-message"></div>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" name="confirmPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="register-role">Role</label>
+                    <select id="register-role" name="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Register</button>
+                <button type="button" class="btn-secondary" id="back-to-login">Back to Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Update the gallery card template in your index.html file -->
+    <div class="gallery-card-template d-none">
+        <div class="card gallery-card" data-id="">
+            <div class="card-img-container">
+                <img src="" class="card-img-top gallery-thumbnail" alt="Gallery thumbnail">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title gallery-title"></h5>
+                <p class="card-text gallery-description"></p>
+                <div class="gallery-meta">
+                    <div class="rating-container">
+                        <i class="fas fa-star"></i>
+                        <span class="rating-value">0.0</span>
+                        <span class="rating-count">(0)</span>
+                    </div>
+                    <div class="comment-container">
+                        <i class="fas fa-comment"></i>
+                        <span class="comment-count">0</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-primary view-gallery">View Gallery</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

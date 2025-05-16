@@ -1,0 +1,33 @@
+/* Add these styles to your style.css for gallery cards */
+.gallery-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.rating-container,
+.comment-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.fa-star {
+    color: #ffc107;
+}
+
+.fa-comment {
+    color: #17a2b8;
+}
+
+.rating-value,
+.comment-count {
+    font-weight: bold;
+}
+
+.rating-count {
+    color: #999;
+    font-size: 0.8rem;
+}

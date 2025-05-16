@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleries</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Add inline CSS to fix gallery layout issues -->
+    <style>
+        .galleries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-thumbnail {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 15px;
+        }
+
+        .gallery-title {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+
+        .gallery-stats {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .gallery-rating {
+            margin-right: 15px;
+        }
+
+        .fa-star {
+            color: #ffc107;
+        }
+
+        .fa-comment {
+            color: #6c757d;
+        }
+
+        .gallery-actions {
+            margin-top: auto;
+        }
+
+        .btn-print {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .btn-print:hover {
+            background-color: #356ac3;
+        }
+
+        .btn-print i {
+            margin-right: 5px;
+        }
+
+        /* Improve filter controls layout */
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Gallery App</h1>
+            <nav>
+                <ul>
+                    <li><a href="galleries.html" class="active">Galleries</a></li>
+                    <li id="admin-nav" style="display:none;"><a href="admin.html">Admin</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+   
+
+    <main>
+        <div class="gallery-controls">
+            <h2>Image Galleries</h2>
+
+            <div class="view-filters">
+                <!-- View toggle buttons -->
+                <div class="view-toggle">
+                    <button id="grid-view-btn" class="view-btn active" title="Grid View">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="table-view-btn" class="view-btn" title="Table View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+
+                <!-- Filter controls -->
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="gallery-filter">Gallery:</label>
+                        <select id="gallery-filter">
+                            <option value="">All Galleries</option>
+                            <!-- Will be populated dynamically -->
+                        </select>
+                    </div>
+
+
+
+                    <!-- <button id="apply-filters" class="btn-primary">Apply Filters</button>
+                    <button id="reset-filters" class="btn-secondary">Reset</button> -->
+                </div>
+            </div>
+
+            <!-- Add this after your filter section -->
+
+        </div>
+
+        <!-- Add this container for grid view -->
+        <div id="grid-view" class="galleries-grid">
+            <!-- Gallery cards will be added here -->
+            <div class="loading">Loading galleries...</div>
+        </div>
+
+        <!-- Table view container -->
+        <div id="table-view" class="table-container" style="display: none;">
+            <table class="galleries-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Rating</th>
+                        <th>Comments</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody id="table-galleries-list">
+                    <tr>
+                        <td colspan="7" class="loading-cell">Loading galleries...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="gallery-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-gallery-detail">&times;</span>
+            <div class="gallery-header">
+                <h2 id="gallery-detail-title">Gallery Name</h2>
+                <p id="gallery-detail-description">Gallery Description</p>
+            </div>
+            <div class="gallery-stats">
+                <span class="gallery-rating"><i class="fas fa-star"></i> <span
+                        id="gallery-detail-rating">0.0</span></span>
+                <span class="gallery-comments"><i class="fas fa-comment"></i> <span
+                        id="gallery-detail-comments">0</span> comments</span>
+            </div>
+
+            <div id="gallery-images" class="images-grid">
+                <div class="loading">Loading images...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/galleries.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        // Check if html2pdf is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add view toggle functionality
+            document.getElementById('grid-view-btn').addEventListener('click', function () {
+                document.getElementById('grid-view').style.display = 'grid';
+                document.getElementById('table-view').style.display = 'none';
+                document.getElementById('grid-view-btn').classList.add('active');
+                document.getElementById('table-view-btn').classList.remove('active');
+            });
+
+            document.getElementById('table-view-btn').addEventListener('click', function () {
+                document.getElementById('grid-view').style.display = 'none';
+                document.getElementById('table-view').style.display = 'block';
+                document.getElementById('table-view-btn').classList.add('active');
+                document.getElementById('grid-view-btn').classList.remove('active');
+            });
+
+            // Add gallery card template function for consistent rendering
+            window.createGalleryCard = function (gallery) {
+                const card = document.createElement('div');
+                card.className = 'gallery-card';
+                card.setAttribute('data-id', gallery.id);
+
+                card.innerHTML = `
+                    <div class="gallery-thumbnail">
+                        ${gallery.thumbnail ? `<img src="${gallery.thumbnail}" alt="${gallery.name}">` : 'No Image'}
+                    </div>
+                    <div class="gallery-info">
+                        <h3 class="gallery-title">${gallery.name}</h3>
+                        <div class="gallery-stats">
+                            <span class="gallery-rating"><i class="fas fa-star"></i> ${gallery.rating || '0.0'}</span>
+                            <span class="gallery-comments"><i class="fas fa-comment"></i> ${gallery.comments || '0'}</span>
+                        </div>
+                        <div class="gallery-actions">
+                            <button class="btn-print print-details" data-id="${gallery.id}">
+                                <i class="fas fa-print"></i> Print Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                return card;
+            };
+
+            if (typeof html2pdf !== 'undefined') {
+                console.log('HTML2PDF library loaded successfully');
+
+                // Add test button functionality
+                document.getElementById('test-pdf-btn').addEventListener('click', function () {
+                    console.log('Test PDF button clicked');
+
+                    // Create a simple PDF
+                    const content = document.createElement('div');
+                    content.innerHTML = `
+                        <h1 style="text-align: center;">Test PDF</h1>
+                        <p>This is a test PDF generated by the Gallery App.</p>
+                        <p>Current time: ${new Date().toLocaleString()}</p>
+                    `;
+
+                    const opt = {
+                        margin: 1,
+                        filename: 'test.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+                    };
+
+                    // Use html2pdf library to generate PDF
+                    html2pdf().set(opt).from(content).save();
+                });
+            } else {
+                console.error('HTML2PDF library not loaded');
+            }
+        });
+    </script>
+</body>
+
+</html>

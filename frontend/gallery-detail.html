@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Detail</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Gallery App</h1>
+            <nav>
+                <ul>
+                    <li><a href="galleries.html">Galleries</a></li>
+                    <li id="admin-nav" style="display:none;"><a href="admin.html">Admin</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="gallery-detail">
+            <div class="gallery-header">
+                <h2 id="gallery-name">Gallery Name</h2>
+                <p id="gallery-description">Gallery Description</p>
+                <button id="print-gallery-btn" class="btn-primary">
+                    <i class="fas fa-print"></i> Print Gallery Details
+                </button>
+            </div>
+
+            <div id="images-container" class="images-grid">
+                <!-- Images will be added here dynamically -->
+                <div class="loading">Loading images...</div>
+            </div>
+
+            <!-- Add this section for ratings and comments -->
+            <div class="gallery-feedback-section">
+                <h3>Rate & Comment on This Gallery</h3>
+
+                <!-- Star rating section -->
+                <div class="star-rating">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+                <div id="user-rating">Not Rated</div>
+                <div id="average-rating">Average Rating: 0.0/5</div>
+
+                <!-- Combined comment form -->
+                <div class="comment-form">
+                    <textarea id="comment-text" placeholder="Share your thoughts about this gallery..."></textarea>
+                    <button id="submit-feedback">Submit Rating & Comment</button>
+                </div>
+
+                <!-- Separate buttons for flexibility -->
+                <div class="feedback-options">
+                    <button id="submit-rating-only" class="secondary-button">Submit Rating Only</button>
+                    <button id="submit-comment-only" class="secondary-button">Submit Comment Only</button>
+                </div>
+            </div>
+
+            <!-- Add this after your gallery-feedback-section -->
+            <div class="comments-section mt-5">
+                <h3 class="comments-heading">Comments (0)</h3>
+
+                <div class="comments-stats mb-3">
+                    <div class="progress" style="height: 5px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted">Comments are loaded and displayed in real-time</small>
+                </div>
+
+                <div class="comments-container">
+                    <p class="loading-comments">Loading comments...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="image-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="image-detail">
+                    <div class="image-container">
+                        <img id="modal-image" src="" alt="">
+                    </div>
+                    <div class="image-info">
+                        <h3 id="modal-image-name">Image Name</h3>
+                        <p id="modal-image-description">Image Description</p>
+
+                        <!-- Average Rating Display -->
+                        <div class="average-rating">
+                            <h4>Average Rating: <span id="average-rating">0</span>/5</h4>
+                            <div class="stars-display" id="average-stars">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+
+                        <!-- Print Button -->
+                        <button id="print-btn" class="btn-primary">
+                            <i class="fas fa-print"></i> Print Details & Comments
+                        </button>
+
+                        <!-- Comments Section -->
+                        <div class="comments-section">
+
+                            <div id="comments-container">
+                                <!-- Comments will be loaded here -->
+                                <p class="no-comments">No comments yet.</p>
+                            </div>
+
+                            <!-- Comment Form -->
+                            <div class="comment-form">
+                                <h4>Add Your Comment</h4>
+                                <div class="rating-input">
+                                    <label>Your Rating:</label>
+                                    <div class="stars-input" id="rating-stars">
+                                        <i class="far fa-star" data-rating="1"></i>
+                                        <i class="far fa-star" data-rating="2"></i>
+                                        <i class="far fa-star" data-rating="3"></i>
+                                        <i class="far fa-star" data-rating="4"></i>
+                                        <i class="far fa-star" data-rating="5"></i>
+                                    </div>
+                                </div>
+                                <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                                <button id="submit-comment" class="btn-primary">Submit Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/gallery-detail.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+
+</html>

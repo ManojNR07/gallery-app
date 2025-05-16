@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Gallery App - Admin</h1>
+            <nav>
+                <ul>
+                    <li><a href="galleries.html">Galleries</a></li>
+                    <li><a href="admin.html" class="active">Admin</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="admin-container">
+            <div class="admin-sidebar">
+                <button id="manage-galleries-btn" class="admin-nav-btn active">Manage Galleries</button>
+                <button id="manage-images-btn" class="admin-nav-btn">Manage Images</button>
+                <button id="manage-users-btn" class="admin-nav-btn">Manage Users</button>
+            </div>
+
+            <div class="admin-content">
+                <!-- Gallery Management Section -->
+                <div id="galleries-section" class="admin-section">
+                    <h2>Manage Galleries</h2>
+                    <button id="add-gallery-btn" class="btn-primary">Add New Gallery</button>
+
+                    <div id="galleries-list" class="admin-list">
+                        <!-- Galleries will be listed here -->
+                        <div class="loading">Loading galleries...</div>
+                    </div>
+
+                    <div id="gallery-form-container" class="modal">
+                        <div class="modal-content">
+                            <span class="close-btn" id="close-gallery-form">&times;</span>
+                            <h3 id="gallery-form-title">Add New Gallery</h3>
+                            <form id="gallery-form">
+                                <input type="hidden" id="gallery-id">
+                                <div class="form-group">
+                                    <label for="gallery-name-input">Gallery Name</label>
+                                    <input type="text" id="gallery-name-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gallery-description-input">Description</label>
+                                    <textarea id="gallery-description-input"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gallery-thumbnail-input">Gallery Thumbnail</label>
+                                    <input type="file" id="gallery-thumbnail-input" accept="image/*">
+                                    <div id="gallery-thumbnail-preview"></div>
+                                </div>
+                                <button type="submit" class="btn-primary">Save Gallery</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Management Section -->
+                <div id="images-section" class="admin-section" style="display:none;">
+                    <h2>Manage Images</h2>
+                    <div class="form-group">
+                        <label for="gallery-select">Select Gallery</label>
+                        <select id="gallery-select">
+                            <option value="">Choose gallery...</option>
+                        </select>
+                    </div>
+
+                    <button id="add-image-btn" class="btn-primary" disabled>Add New Image</button>
+
+                    <div id="images-list" class="admin-list">
+                        <div class="placeholder">Select a gallery to manage images</div>
+                    </div>
+
+                    <div id="image-form-container" class="modal">
+                        <div class="modal-content">
+                            <span class="close-btn" id="close-image-form">&times;</span>
+                            <h3 id="image-form-title">Add New Image</h3>
+                            <form id="image-form">
+                                <input type="hidden" id="image-id">
+                                <input type="hidden" id="image-gallery-id">
+                                <div class="form-group">
+                                    <label for="image-name-input">Image Name</label>
+                                    <input type="text" id="image-name-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-description-input">Description</label>
+                                    <textarea id="image-description-input"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="image-file-input">Image File</label>
+                                    <input type="file" id="image-file-input" accept="image/*">
+                                    <div id="current-image-preview"></div>
+                                </div>
+                                <button type="submit" class="btn-primary">Save Image</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management Section -->
+                <div id="users-section" class="admin-section" style="display:none;">
+                    <h2>Manage Users</h2>
+
+                    <div class="users-container">
+                        <div class="users-list-container">
+                            <h3>All Users</h3>
+                            <div id="users-list" class="admin-list">
+                                <!-- Users will be listed here -->
+                                <div class="loading">Loading users...</div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-access-container">
+                            <h3>Gallery Access</h3>
+                            <div class="form-group">
+                                <label for="access-gallery-select">Select Gallery</label>
+                                <select id="access-gallery-select">
+                                    <option value="">Choose gallery...</option>
+                                </select>
+                            </div>
+
+                            <div id="gallery-users" class="admin-list">
+                                <div class="placeholder">Select a gallery to manage access</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
